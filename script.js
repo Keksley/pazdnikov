@@ -207,10 +207,9 @@ function getSubmitBtnElement(app) {
             _context2.next = 8;
             return fetch(postURL, {
               method: 'POST',
-              // *GET, POST, PUT, DELETE, etc.
-              // headers: {
-              //   'Content-Type': 'application/json',
-              // },
+              headers: {
+                'Content-Type': 'application/json',
+              },
               body: JSON.stringify(request) // body data type must match "Content-Type" header
 
             });
