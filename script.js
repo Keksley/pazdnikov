@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*
         case 3:
           data = _context.sent;
           render(getTables(data));
-          _context.next = 12;
+          _context.next = 13;
           break;
 
         case 7:
@@ -48,8 +48,9 @@ document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator( /*
           console.error(_context.t0);
           render(null);
           document.location.href = 'https://ya.ru';
+          document.querySelector('#app').insertAdjacentHTML('beforeend', "\n    <div class=\"alert alert-danger mt-4\" role=\"alert\">\n      \u041E\u0448\u0438\u0431\u043A\u0430: ".concat(_context.t0, "\n    </div>\n    "));
 
-        case 12:
+        case 13:
         case "end":
           return _context.stop();
       }
@@ -95,7 +96,7 @@ function render(tables) {
     var accordionContent = document.createElement('div');
     accordionContent.id = tableId;
     accordionContent.classList.add('accordion-collapse', 'collapse');
-    var accordionBody = document.createElement('div');
+    accordionBody = document.createElement('div');
     accordionBody.classList.add('accordion-body');
     var header = getHeaderElement(eventStartDateTime, tableId);
     accordionItem.appendChild(header);
@@ -125,7 +126,7 @@ function getHeaderElement(eventStartDateTime, id) {
       mm = _eventStartDateTime$s2[1],
       yy = _eventStartDateTime$s2[2];
 
-  var formatedDateForContructor = [mm, dd, yy].join('.');
+  var formatedDateForContructor = [mm, dd, yy].join('/');
   header.innerHTML = "\n  <button class=\"accordion-button\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#".concat(id, "\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\n    ").concat(format(new Date(formatedDateForContructor)), "\n  </button>");
   return header;
 }
@@ -149,21 +150,23 @@ function _postData() {
             _context3.next = 4;
             return fetch(url, {
               method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
+              // *GET, POST, PUT, DELETE, etc.
+              // headers: {
+              //   'Content-Type': 'application/json',
+              // },
               body: JSON.stringify(data) // body data type must match "Content-Type" header
+
             });
 
           case 4:
             response = _context3.sent;
-            _context3.next = 8;
+            _context3.next = 7;
             return response.json();
 
-          case 8:
+          case 7:
             return _context3.abrupt("return", _context3.sent);
 
-          case 9:
+          case 8:
           case "end":
             return _context3.stop();
         }
