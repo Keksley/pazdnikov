@@ -96,7 +96,7 @@ function render(tables) {
     var accordionContent = document.createElement('div');
     accordionContent.id = tableId;
     accordionContent.classList.add('accordion-collapse', 'collapse');
-    accordionBody = document.createElement('div');
+    var accordionBody = document.createElement('div');
     accordionBody.classList.add('accordion-body');
     var header = getHeaderElement(eventStartDateTime, tableId);
     accordionItem.appendChild(header);
