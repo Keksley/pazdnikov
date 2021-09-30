@@ -1,4 +1,4 @@
-const ver = 0.1;
+const ver = 0.2;
 console.log('ver',ver);
 
 const urlSearchParams = new URLSearchParams(window.location.search);
