@@ -1,6 +1,3 @@
-const ver = 0.3;
-console.log('ver',ver);
-
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 document.addEventListener('DOMContentLoaded', async () => {
