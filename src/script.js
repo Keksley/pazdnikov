@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (e) {
     console.error(e);
     render(null);
-    // document.location.href = 'https://ya.ru';
+    document.location.href = 'https://ya.ru';
     document.querySelector('#app').insertAdjacentHTML('beforeend', `
     <div class="alert alert-danger mt-4" role="alert">
       Ошибка: ${e}
