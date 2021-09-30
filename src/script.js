@@ -1,3 +1,6 @@
+const ver = 0.1;
+console.log('ver',ver);
+
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 document.addEventListener('DOMContentLoaded', async () => {
@@ -98,7 +101,6 @@ async function postData(url = '', data = {}) {
     // },
     body: JSON.stringify(data), // body data type must match "Content-Type" header
   });
-  console.log(response)
   return await response.json(); // parses JSON response into native JavaScript objects
 }
 
@@ -217,7 +219,6 @@ function getTbodyElement(rows) {
     tr.appendChild(timeTD);
     const bigEvent = rowData.find(event => event && event.eventLocation === 7);
 
-    console.log(bigEvent);
     if (bigEvent) {
       const td = document.createElement('td');
       td.colSpan = 6;
