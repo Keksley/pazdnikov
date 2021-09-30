@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error(e);
     render(null);
     // document.location.href = 'https://ya.ru';
-    document.body.insertAdjacentHTML('beforend', `
+    document.querySelector('#app').insertAdjacentHTML('beforend', `
     <div class="alert alert-danger mt-4" role="alert">
-      ${e}
+      Ошибка: ${e}
     </div>
     `)
   }
