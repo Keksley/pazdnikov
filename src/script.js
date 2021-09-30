@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error(e);
     render(null);
     // document.location.href = 'https://ya.ru';
-    document.querySelector('#app').insertAdjacentHTML('beforend', `
+    document.querySelector('#app').insertAdjacentHTML('beforeend', `
     <div class="alert alert-danger mt-4" role="alert">
       Ошибка: ${e}
     </div>
@@ -85,7 +85,7 @@ function getHeaderElement(eventStartDateTime, id) {
   const header = document.createElement('h4');
   header.classList.add('accordion-header');
   const [dd, mm, yy] = eventStartDateTime.split('.');
-  const formatedDateForContructor = [mm, dd, yy].join('.');
+  const formatedDateForContructor = [mm, dd, yy].join('/');
   header.innerHTML = `
   <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="true" aria-controls="collapseOne">
     ${format(new Date(formatedDateForContructor))}
