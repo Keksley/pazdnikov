@@ -328,18 +328,19 @@ async function getData(userId) {
 }
 
 function switchFilter(btn, filteredSelector) {
-  const table = document.querySelector('.accordion .table:not(.legend)');
-
-  if (!btn.classList.contains('btn-primary')) {
-    table.querySelectorAll('td.filtered').forEach(td => {
-      td.classList.remove('empty', 'filtered');
-    })
-    if (filteredSelector) {
-      table.querySelectorAll(filteredSelector).forEach(td => {
-        td.classList.add('empty', 'filtered');
-      }) 
+  const tables = document.querySelectorAll('.accordion .table:not(.legend)');
+  tables.forEach(table => {
+    if (!btn.classList.contains('btn-primary')) {
+      table.querySelectorAll('td.filtered').forEach(td => {
+        td.classList.remove('empty', 'filtered');
+      })
+      if (filteredSelector) {
+        table.querySelectorAll(filteredSelector).forEach(td => {
+          td.classList.add('empty', 'filtered');
+        }) 
+      }
     }
-  }
+  })
 }
 
 function setFilter() {
