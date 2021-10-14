@@ -62,7 +62,7 @@ function render(tables) {
     accordionContent.classList.add('accordion-collapse', 'collapse');
     accordionBody = document.createElement('div');
     accordionBody.classList.add('accordion-body');
-    addLegend(accordionBody);
+    // addLegend(accordionBody);
     const header = getHeaderElement(eventStartDateTime, tableId);
     accordionItem.appendChild(header);
     accordionItem.appendChild(accordionContent);
@@ -196,6 +196,22 @@ function getTableElement(data) {
   table.appendChild(thead);
   const tbody = getTbodyElement(data);
   table.appendChild(tbody);
+
+  for (let i = 1; i < 7; i++) {
+    let isEmptyCol = true;
+    tbody.childNodes.forEach(tr => {
+      if (tr.childNodes[i] && !tr.childNodes[i].classList.contains('empty')) {
+        isEmptyCol = false;
+      }
+    })
+    
+    if (isEmptyCol) {
+      thead.childNodes[0].childNodes[i].style.display = 'none';
+      tbody.childNodes.forEach(tr => {
+        tr.childNodes[i].style.display = 'none';
+      })
+    }
+  }
 
   return table;
 }
@@ -347,22 +363,27 @@ function setFilter() {
   const all = document.getElementById('filter-all');
   const region = document.getElementById('filter-region');
   const other = document.getElementById('filter-other');
-  
   const switchBtns = (btn) => {
-    [all, region, other].forEach(curBtn => curBtn.classList.remove('btn-primary'));
+    [all, region, other].forEach(curBtn => btn && curBtn.classList.remove('btn-primary'));
     btn.classList.add('btn-primary');
   } 
 
-  region.addEventListener('click', () => {
-    switchFilter(region, 'td:not(.region):not(.empty)');
-    switchBtns(region);
-  })
-  all.addEventListener('click', () => {
-    switchFilter(all);
-    switchBtns(all);
-  })
-  other.addEventListener('click', () => {
-    switchFilter(other, 'td.region:not(.empty)')
-    switchBtns(other);
-  })
+  if (region) {
+    region.addEventListener('click', () => {
+      switchFilter(region, 'td:not(.region):not(.empty)');
+      switchBtns(region);
+    })
+  }
+  if (all) {
+    all.addEventListener('click', () => {
+      switchFilter(all);
+      switchBtns(all);
+    })
+  }
+  if (other) {
+    other.addEventListener('click', () => {
+      switchFilter(other, 'td.region:not(.empty)')
+      switchBtns(other);
+    })
+  }
 }
