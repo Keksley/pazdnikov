@@ -275,6 +275,11 @@ function getTbodyElement(rows) {
         }
         
         tr.appendChild(td);
+        if (eventData && eventData.isOverQuota) {
+          const text = `На данную площадку онлайн регистрация закрыта. Вы можете зарегистрироваться на нее в день мероприятия в МВДЦ Сибирь , при наличии мест.`
+          td.insertAdjacentHTML('beforeend', `<br><b class="over-quota__text">${text}</b>`);
+          td.classList.add('over-quota')
+        }
         if (eventData && eventData.messageQuota) {
           td.insertAdjacentHTML('beforeend', `<span class="quota text-danger">${eventData.messageQuota}</span>`)
         }

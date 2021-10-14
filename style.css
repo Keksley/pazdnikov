@@ -79,7 +79,9 @@ td.other {
 }
 
 td.over-quota {
-  background: rgb(112, 112, 112);
+  background: rgb(221, 221, 221);
+  border: 1px solid rgb(221, 221, 221);
+  cursor: default;
 }
 
 .quota {
