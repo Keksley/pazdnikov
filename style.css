@@ -2,6 +2,8 @@
   cursor: pointer;
   user-select: none;
   padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: relative;
 }
 
 
@@ -74,4 +76,17 @@ td.other {
     display: flex;
     flex-direction: column;
   }
+}
+
+td.over-quota {
+  background: rgb(112, 112, 112);
+}
+
+.quota {
+  font-size: 0.75em;
+  margin-top: auto;
+  display: block;
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
 }

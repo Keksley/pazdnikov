@@ -69,11 +69,12 @@ function render(tables) {
     accordionContent.appendChild(accordionBody);
     accordionBody.appendChild(table);
     accordion.appendChild(accordionItem);
-    if (index > 0) {
-      header.querySelector('.accordion-button').classList.add('collapsed');
-    } else {
-      accordionContent.classList.add('show');
-    }
+    accordionContent.classList.add('show');
+    // if (index > 0) {
+    //   header.querySelector('.accordion-button').classList.add('collapsed');
+    // } else {
+    //   accordionContent.classList.add('show');
+    // }
     app.appendChild(accordion);
   });
   app.appendChild(getSubmitBtnElement(app));
@@ -86,7 +87,7 @@ function getHeaderElement(eventStartDateTime, id) {
   const formatedDateForContructor = [mm, dd, yy].join('/');
   header.innerHTML = `
   <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="true" aria-controls="collapseOne">
-    ${format(new Date(formatedDateForContructor))}
+    <h2 class="w-100 text-center">${format(new Date(formatedDateForContructor))}</h2>
   </button>`;
   return header;
 }
@@ -251,6 +252,9 @@ function getTbodyElement(rows) {
       td.dataset.eventGuidId = bigEvent.eventGuidId;
       td.textContent = bigEvent.eventName;
       tr.appendChild(td);
+      if (bigEvent.messageQuota) {
+        td.insertAdjacentHTML('beforeend', `<span class="quota">${bigEvent.messageQuota}</span>`)
+      }
     } else {
       rowData.forEach((eventData, index) => {
         if (index === 6) {
@@ -269,8 +273,11 @@ function getTbodyElement(rows) {
         } else {
           td.classList.add('empty');
         }
-  
+        
         tr.appendChild(td);
+        if (eventData && eventData.messageQuota) {
+          td.insertAdjacentHTML('beforeend', `<span class="quota text-danger">${eventData.messageQuota}</span>`)
+        }
       });
     }
     const selected = tr.querySelector('.table-success');
@@ -280,6 +287,9 @@ function getTbodyElement(rows) {
     tr.addEventListener('click', (e) => {
       const target = e.target;
       if (target.classList.contains('empty')) {
+        return;
+      }
+      if (target.classList.contains('over-quota')) {
         return;
       }
       if (target.tagName === 'TD') {
